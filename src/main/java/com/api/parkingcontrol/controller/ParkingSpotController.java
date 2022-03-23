@@ -3,7 +3,6 @@ package com.api.parkingcontrol.controller;
 import com.api.parkingcontrol.dtos.ParkingSpotDto;
 import com.api.parkingcontrol.model.ParkinSpotModel;
 import com.api.parkingcontrol.service.ParkingSpotService;
-import com.fasterxml.jackson.databind.util.BeanUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -51,12 +51,18 @@ public class ParkingSpotController {
     }
 
     //obtener todos los registros y paginarlos
-    @GetMapping
+   /* @GetMapping
     public ResponseEntity<Page<ParkinSpotModel>> getAllParkingSpot(
             //paginar los resultados
-            @PageableDefault( page = 0, size = 10, sort = "id", direction = Sort.Direction.ASC)Pageable pageable
+            @PageableDefault( page = 0, size = 10, sort = "parkinSpotId", direction = Sort.Direction.ASC)Pageable pageable
             ){
-        return ResponseEntity.status(HttpStatus.OK).body(parkingSpotService.findAll(pageable));
+        return ResponseEntity.status(HttpStatus.OK).body(parkingSpotService.findAllP(pageable));
+    }*/
+
+    //obtener todos los registros
+    @GetMapping
+    public ResponseEntity<List<ParkinSpotModel>> getAllParkingSpot(){
+        return ResponseEntity.status(HttpStatus.OK).body(parkingSpotService.findAllL());
     }
 
     //obtener por id
