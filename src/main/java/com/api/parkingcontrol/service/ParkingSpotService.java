@@ -37,7 +37,7 @@ public class ParkingSpotService {
         return parkingSpotRepository.existsByApartmentAndBlock(apartment,block);
     }
 
-    public Page<ParkinSpotModel> findAll(Pageable pageable) {
+    public Page<ParkinSpotModel> findAllP(Pageable pageable) {
         return parkingSpotRepository.findAll(pageable);
     }
 
@@ -48,5 +48,9 @@ public class ParkingSpotService {
     @Transactional
     public void delete(ParkinSpotModel parkinSpotModel) {
         parkingSpotRepository.delete(parkinSpotModel);
+    }
+
+    public List<ParkinSpotModel> findAllL() {
+        return parkingSpotRepository.findAll();
     }
 }
